@@ -1,0 +1,316 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: assets
+public_folder: /assets
+collections:
+  - name: config
+    label: Config
+    files:
+      - name: config
+        label: Config
+        file: _config.yml
+        fields:
+          - widget: string
+            name: title
+            label: Title
+            required: true
+          - widget: string
+            name: subtitle
+            label: SubTitle
+            required: false
+          - widget: string
+            name: email
+            label: Email
+            required: false
+          - widget: string
+            name: name
+            label: Author name
+            required: false
+          - widget: string
+            name: description
+            label: Description
+            required: false
+          - widget: string
+            name: baseurl
+            label: Base URL
+            required: false
+            hint: 'the subpath of your site, e.g. /blog/'
+          - widget: string
+            name: url
+            label: URL
+            required: false
+            hint: the base hostname & protocol for your site
+          - widget: image
+            name: cover
+            label: Cover Image
+            required: false
+          - widget: image
+            name: logo
+            label: Logo Image
+            required: false
+          - widget: list
+            name: plugins
+            label: Plugins
+            required: false
+            hint: External plugins
+            field:
+              label: String
+              name: string
+              widget: string
+          - widget: list
+            name: exclude
+            label: Exclude
+            required: false
+            field:
+              label: String
+              name: string
+              widget: string
+          - widget: string
+            name: markdown
+            label: Name
+            required: false
+            hint: Build Setting
+          - widget: boolean
+            name: inter_post_navigation
+            label: Inter Post Navigation
+            required: false
+          - widget: string
+            name: highlightjs_theme
+            label: Hightlight JS
+            required: false
+          - widget: object
+            name: pagination
+            label: Pagination
+            required: false
+            fields:
+              - widget: boolean
+                name: enabled
+                label: Enable Pagination
+                required: false
+              - widget: number
+                name: per_page
+                label: Per Page
+                required: false
+                valueType: int
+              - widget: string
+                name: permalink
+                label: Permalink
+                required: false
+              - widget: boolean
+                name: sort_reverse
+                label: Sort Reverse
+                required: false
+          - widget: object
+            name: jekyll-archives
+            label: Jekyll Archives
+            required: false
+            fields:
+              - widget: list
+                name: enabled
+                label: Enabled
+                required: false
+                field:
+                  label: String
+                  name: string
+                  widget: string
+              - widget: string
+                name: layout
+                label: Layout
+                required: false
+              - widget: object
+                name: permalinks
+                label: Permalinks
+                required: false
+                fields:
+                  - widget: string
+                    name: category
+                    label: Category
+                    required: false
+                  - widget: string
+                    name: tag
+                    label: Tag
+                    required: false
+          - widget: string
+            name: disqus_shortname
+            label: Disqus Shortname
+            required: false
+          - widget: string
+            name: ga_tracking_id
+            label: Google Analytics Code
+            required: false
+          - widget: list
+            name: descriptions
+            label: Category Descriptions
+            required: false
+            fields:
+              - widget: string
+                name: cat
+                label: Category Name
+                required: false
+              - widget: string
+                name: desc
+                label: Category Description
+                required: false
+          - widget: list
+            name: social
+            label: Social Icons
+            required: false
+            fields:
+              - widget: string
+                name: name
+                label: Name
+                required: false
+              - widget: string
+                name: icon
+                label: Icon Name
+                required: false
+              - widget: string
+                name: username
+                label: User Name
+                required: false
+              - widget: string
+                name: url
+                label: Social URL
+                required: false
+              - widget: string
+                name: desc
+                label: Description
+                required: false
+              - widget: boolean
+                name: share
+                label: Share
+                required: false
+          - widget: object
+            name: protocols
+            label: Social Sharing Protocols
+            required: false
+            fields:
+              - widget: image
+                name: fb_image
+                label: Facebook Image
+                required: false
+              - widget: number
+                name: fb_image_width
+                label: Facebook Img Width
+                required: false
+                valueType: int
+              - widget: number
+                name: fb_image_height
+                label: Facebook Img Height
+                required: false
+                valueType: int
+              - widget: string
+                name: fb_image_type
+                label: Facebook Img Type
+                required: false
+              - widget: image
+                name: twitter_image
+                label: Twitter Image
+                required: false
+              - widget: hidden
+                name: os_repo
+                label: Git URL
+                required: false
+              - widget: hidden
+                name: os_rcs_type
+                label: Os Rcs Type
+                required: false
+              - widget: hidden
+                name: os_src
+                label: Git Source
+                required: false
+  - name: home
+    label: Home Page
+    files:
+      - name: home
+        label: Home Page
+        file: index.html
+        fields:
+          - widget: string
+            name: layout
+            label: Page Layout
+            required: true
+          - widget: object
+            name: pagination
+            label: Pagination
+            required: false
+            fields:
+              - widget: boolean
+                name: enabled
+                label: Enabled
+                required: false
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: basicpage
+    label: Basic Pages
+    folder: /
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: layout
+        label: Page Layout
+        required: true
+        default: page
+      - widget: string
+        name: title
+        label: Title
+        required: false
+      - widget: string
+        name: permalink
+        label: Permalink
+        required: false
+      - widget: boolean
+        name: main_nav
+        label: Main Nav
+        required: false
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+  - name: post
+    label: Posts
+    folder: _posts
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: layout
+        label: Page Layout
+        required: true
+      - widget: string
+        name: title
+        label: Title
+        required: false
+      - widget: date
+        name: date
+        label: Publish Date
+        required: false
+      - widget: string
+        name: author
+        label: Author
+        required: false
+      - widget: string
+        name: categories
+        label: Categories
+        required: false
+      - widget: string
+        name: tags
+        label: Tags
+        required: false
+      - widget: image
+        name: cover
+        label: Cover Image
+        required: false
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
